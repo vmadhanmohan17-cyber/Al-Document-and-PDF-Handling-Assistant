@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Folder Holder</title>
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="{{ url_for('static', filename='img/logo.png') }}"
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+  >
+</head>
+
+<body>
+
+  <!-- Background decorations -->
+  <div class="bg" aria-hidden="true">
+    <span class="blob blob-green"></span>
+    <span class="blob blob-pink"></span>
+    <span class="blob blob-yellow"></span>
+    <span class="ring ring-left"></span>
+    <span class="ring ring-right"></span>
+  </div>
+
+  <!-- Main landing section -->
+  <main class="hero" id="drop">
+
+    <a
+      href="/files"
+      class="file-manager-link"
+      aria-label="Open File Manager"
+    >
+      File Manager
+    </a>
+
+    <img
+      src="{{ url_for('static', filename='img/logo.png') }}"
+      alt="Folder Holder logo"
+      class="logo"
+    >
+
+    <h1>FOLDER HOLDER</h1>
+
+    <h2>AI Document &amp; PDF Assistant</h2>
+
+    <p class="blurb">
+      Drop in a PDF, Word file or text file. Get summaries, key points and
+      answers straight from your document.
+    </p>
+
+    <!-- Upload and Ask controls -->
+    <div class="pill">
+      <button id="uploadBtn" class="pill-left" type="button">
+        Upload
+
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M4 12h16M14 6l6 6-6 6"/>
+        </svg>
+      </button>
+
+      <button id="askBtn" type="button" disabled>
+        Ask
+      </button>
+    </div>
+
+    <input
+      id="fileInput"
+      type="file"
+      accept=".pdf,.docx,.txt"
+      hidden
+    >
+
+    <div
+      id="fileChip"
+      class="file-chip"
+      hidden
+    ></div>
+
+  </main>
+
+  <!-- Document chat workspace -->
+  <section
+    id="workspace"
+    class="workspace"
+    aria-label="Document assistant"
+    hidden
+  >
+
+    <div class="actions">
+      <button
+        class="chip"
+        data-mode="summarize"
+        type="button"
+      >
+        Summarize
+      </button>
+
+      <button
+        class="chip"
+        data-mode="keypoints"
+        type="button"
+      >
+        Key points
+      </button>
+    </div>
+
+    <div
+      id="messages"
+      class="messages"
+      aria-live="polite"
+      aria-label="Conversation"
+    ></div>
+
+    <div class="composer">
+      <input
+        id="question"
+        type="text"
+        placeholder="Ask something about your document…"
+        autocomplete="off"
+        aria-label="Ask about your document"
+      >
+
+      <button id="send" type="button">
+        Send
+      </button>
+    </div>
+
+  </section>
+
+  <!-- Application JavaScript -->
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+</html>

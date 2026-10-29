@@ -1,0 +1,6 @@
+Flask
+requests
+python-docx
+python-dotenv
+pypdf
+send2trash

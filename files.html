@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Manager | Folder Holder</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/filemanager.css') }}">
+    <script defer
+            src="{{ url_for('static', filename='js/filemanager.js') }}"></script>
+</head>
+<body>
+    <main class="fm-shell">
+        <header class="fm-header">
+            <div>
+                <a class="fm-brand" href="/">FOLDER HOLDER</a>
+                <p class="fm-subtitle">Your files, organized.</p>
+            </div>
+            <a class="fm-back" href="/">Document Assistant →</a>
+        </header>
+
+        <section class="fm-panel">
+            <div class="fm-heading">
+                <div>
+                    <h1>File Manager</h1>
+                    <p>Manage files and folders on this computer.</p>
+                </div>
+                <button id="refreshButton" class="button secondary">
+                    ↻ Refresh
+                </button>
+            </div>
+
+            <div class="fm-toolbar">
+                <label class="field">
+                    <span>Permitted folder</span>
+                    <select id="rootSelect">
+                        <option value="">Loading folders...</option>
+                    </select>
+                </label>
+
+                <label class="field search-field">
+                    <span>Search filenames</span>
+                    <div class="search-box">
+                        <input id="searchInput" type="search"
+                               placeholder="Search this folder recursively...">
+                        <button id="searchButton" class="button">
+                            Search
+                        </button>
+                    </div>
+                </label>
+            </div>
+
+            <div class="fm-actions">
+                <button id="newFolderButton" class="button">
+                    + New folder
+                </button>
+                <button id="newFileButton" class="button secondary">
+                    + New file
+                </button>
+            </div>
+
+            <div class="fm-location">
+                <div>
+                    <span class="muted">Location</span>
+                    <nav id="breadcrumbs" aria-label="Breadcrumb"></nav>
+                </div>
+
+                <label class="sort-field">
+                    <span>Sort by</span>
+                    <select id="sortSelect">
+                        <option value="name">Name</option>
+                        <option value="type">Type</option>
+                        <option value="size">Size</option>
+                        <option value="modified">Modified date</option>
+                    </select>
+                </label>
+            </div>
+
+            <div id="status" class="status" role="status" aria-live="polite">
+                Loading your folders...
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Size</th>
+                            <th>Modified</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="fileRows">
+                        <tr>
+                            <td colspan="5" class="empty">
+                                Loading files...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="fm-note">
+                File operations are restricted to configured permitted folders.
+                Delete sends items to your operating system's Trash when supported.
+            </p>
+        </section>
+    </main>
+
+    <div id="errorToast" class="toast" hidden role="alert"></div>
+</body>
+</html>
